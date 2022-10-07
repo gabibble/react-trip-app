@@ -23,7 +23,10 @@ export const NavBar = () => {
   const navigate = useNavigate();
 
   let links = [
-
+    {
+      text: "Home",
+      onClick: () => navigate("/"),
+    },
     {
       text: "Plan a Trip",
       onClick: () => navigate("/Dashboard"),
@@ -43,24 +46,29 @@ export const NavBar = () => {
   ];
 
   let authLinks = [
+    {
+      text: "Home",
+      onClick: () => navigate("/"),
+    },
+    {
+      text: "Dashboard",
+      onClick: () => navigate("/Dashboard"),
+    },
+    {
+      text: "About",
+      onClick: () => navigate("/About"),
+    },
+    {
+      text: "Sign Out",
+      onClick: () => {
+        signUsOut();
+        navigate("/");
+        window.location.reload();
+      },
+    },
+  ];
 
-        {
-          text: "Dashboard",
-          onClick: () => navigate("/Dashboard"),
-        },
-        {
-          text: "About",
-          onClick: () => navigate("/About"),
-        },
-        {
-          text: "Sign Out",
-          onClick: () => {
-            signUsOut(); navigate("/"); window.location.reload();;
-          },
-        },
-      ];
-
-  if (myAuth == "true") {
+  if (myAuth === "true") {
     links = authLinks
   }
 
@@ -183,7 +191,6 @@ export const NavBar = () => {
             alignItems="center"
             spacing={1}
           >
-            {/* <GoogleButton text="Sign in with Google" /> */}
           </Stack>
         </Toolbar>
       </Container>

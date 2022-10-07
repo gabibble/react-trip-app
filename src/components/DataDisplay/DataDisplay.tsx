@@ -8,7 +8,6 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { useGetData, useGetLastTrip } from "../../custom-hooks";
-import { serverCalls } from "../../api"; 
 import { Box, Button, Stack } from "@mui/material";
 import { TripDetails } from "../TripDetails";
 import { useNavigate } from "react-router-dom";
@@ -33,16 +32,15 @@ export const DataDisplay = () => {
   };
 
   const myAuth = localStorage.getItem("myAuth");
-  if (myAuth == "true") {
+  if (myAuth === "true") {
     return (
       <div>
         <Box
           sx={{ backgroundColor: "secondary.light", width: 1 }}
-          pt={0}
-          mt={0}
+
         >
           <Stack
-            direction="row"
+            direction={{ xs: "column", sm: "row" }}
             justifyContent="center"
             alignItems="center"
             spacing={{ xs: 1, sm: 2, md: 4 }}
@@ -215,8 +213,6 @@ export const DataDisplay = () => {
                   </CardContent>
                   {/* card actions here */}
                   <CardActions>
-           
-
                     <Button
                       variant="outlined"
                       size="small"

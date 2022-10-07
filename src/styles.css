@@ -41,3 +41,9 @@ img {
     line-height: 1.1;
     font-weight: 500;
 }
+
+a {
+  color: #126186;
+  text-decoration: none;
+  font-weight: 500;
+}

@@ -15,25 +15,19 @@ export const theme = createTheme({
     button: {
       textTransform: "none",
       fontFamily: "Poppins",
+      lineHeight: 1.4
     },
     h1: {
       fontSize: 64,
       fontWeight: 400,
       fontFamily: "Poppins",
     },
-    h2: {
-      fontFamily: "Poppins",
-    },
-    h3: {
-      fontFamily: "Poppins",
-    },
+
     h4: {
       fontFamily: "Poppins",
       fontSize: 28
     },
-    h5: {
-      fontFamily: "Poppins",
-    },
+
     h6: {
       fontFamily: "Poppins",
       fontSize: "16px",

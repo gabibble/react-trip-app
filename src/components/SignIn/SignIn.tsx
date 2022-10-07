@@ -189,7 +189,7 @@ export const SignIn = (props: userProps) => {
               alignItems="center"
               spacing={2}
             >
-              <Button type="submit" variant="contained" color="primary">
+              <Button type="submit" variant="contained" color="primary" size="large">
                 Submit
               </Button>
               <GoogleButton
@@ -246,26 +246,26 @@ export const SignUp = (props: userProps) => {
     <div>
       <NavBar />
       <Container maxWidth="sm" sx={signinStyles.containerStyle}>
-        <Typography sx={signinStyles.typographyStyle}>Sign Up To start using TripUp</Typography>
+        <Typography sx={signinStyles.typographyStyle}>
+          Sign Up To Start Using TripUp
+        </Typography>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div>
-            <label htmlFor="email">Email</label>
             <Input
               {...register("email")}
+              label="email"
               name="email"
-              placeholder="place email here"
+              placeholder="email"
               type="text"
             />
-          </div>
-          <div>
-            <label htmlFor="password">Password</label>
+        
             <Input
               {...register("password")}
+              label="password"
               name="password"
-              placeholder="place password here"
+              placeholder="password"
               type="password"
             />
-          </div>
+            <Typography variant = "caption">Password must be 6 characters </Typography>
           <Box mt={2}>
             <Stack
               direction="row"
@@ -273,13 +273,15 @@ export const SignUp = (props: userProps) => {
               alignItems="center"
               spacing={2}
             >
-              <Button type="submit" variant="contained" color="primary">
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                size="large"
+              >
                 Submit
               </Button>
-              <GoogleButton
-                open={open}
-                onClick={handleSnackClose}
-              />
+              <GoogleButton open={open} onClick={handleSnackClose} />
             </Stack>
           </Box>
         </form>
