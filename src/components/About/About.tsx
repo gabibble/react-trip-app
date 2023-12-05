@@ -4,7 +4,6 @@ import { Box, Button, Container, Stack, Typography } from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
 import { useNavigate } from "react-router-dom";
 
-
 export const About = () => {
   const navigate = useNavigate();
 
@@ -48,7 +47,7 @@ export const About = () => {
           >
             Julia Giebultowicz
           </a>
-          . Back-end API build in{" "}
+          . Back-end API built in{" "}
           <a
             href="https://github.com/gabibble/flask_trip_app"
             target="_blank"
