@@ -1,12 +1,4 @@
-//insomnia to get urls
-
-//token from header
-
 const token = localStorage.getItem("token");
-
-console.log(token)
-
-// let token = `testing123`;
 
 let my_headers = {
   "Content-Type": "application/json",
@@ -17,7 +9,7 @@ export const serverCalls = {
   //GET ALL
   get: async () => {
     const response = await fetch(
-      `https://trip-app-97.herokuapp.com/api/get_trips`,
+      `https://trip-app-render.onrender.com/api/get_trips`,
       {
         method: "GET",
         headers: my_headers,
@@ -30,11 +22,10 @@ export const serverCalls = {
     return await response.json();
   },
 
-
   //CREATE
   create: async (data: any) => {
     const response = await fetch(
-      `https://trip-app-97.herokuapp.com/api/create_trip`,
+      `https://trip-app-render.onrender.com/api/create_trip`,
       {
         method: "POST",
         headers: my_headers,
@@ -47,11 +38,10 @@ export const serverCalls = {
     return await response.json();
   },
 
-
   //UPDATE
   update: async (id: string, data: any = {}) => {
     const response = await fetch(
-      `https://trip-app-97.herokuapp.com/api/update_trip/${id}`,
+      `https://trip-app-render.onrender.com/api/update_trip/${id}`,
       {
         method: "POST",
         headers: my_headers,
@@ -60,11 +50,10 @@ export const serverCalls = {
     );
   },
 
-
   //DELETE
   delete: async (id: string) => {
     const response = await fetch(
-      `https://trip-app-97.herokuapp.com/api/del_trip/${id}`,
+      `https://trip-app-render.onrender.com/api/del_trip/${id}`,
       {
         method: "DELETE",
         headers: my_headers,
