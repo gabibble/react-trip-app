@@ -60,8 +60,8 @@ export const NavBar = () => {
     },
     {
       text: "Sign Out",
-      onClick: () => {
-        signUsOut();
+      onClick: async () => {
+        await signUsOut();
         navigate("/");
         window.location.reload();
       },
@@ -69,21 +69,18 @@ export const NavBar = () => {
   ];
 
   if (myAuth === "true") {
-    links = authLinks
+    links = authLinks;
   }
 
   const [navLinks, setNavlinks] = useState(links);
 
   const signUsOut = async () => {
-      await signOut(auth);
-      localStorage.setItem("myAuth", "false");
-      localStorage.setItem("token", "testing123");
-      setNavlinks(links);
-      navigate("/");
-      
-    };
-
-
+    await signOut(auth);
+    localStorage.setItem("myAuth", "false");
+    localStorage.setItem("token", "testing123");
+    setNavlinks(links);
+    navigate("/");
+  };
 
   //copied form MUI template
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -190,8 +187,7 @@ export const NavBar = () => {
             justifyContent="flex-end"
             alignItems="center"
             spacing={1}
-          >
-          </Stack>
+          ></Stack>
         </Toolbar>
       </Container>
     </AppBar>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 //card grid
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -33,11 +33,14 @@ export const DataDisplay = () => {
 
   const myAuth = localStorage.getItem("myAuth");
 
-  if (myAuth === "false") {
+  if (!myAuth || myAuth === "false") {
     // Display hardcoded trips in case DB fails or is slow
     const trips = hardCodedTrips();
     tripData = [...tripData, ...trips];
   }
+
+  const tripsHeading =
+    tripData.length > 0 ? "Recently Added Trips" : "Add a trip to get started!";
 
   return (
     <div>
@@ -51,32 +54,39 @@ export const DataDisplay = () => {
           pb={3}
         >
           <NewTrip variant="outlined" color="primary" text="New Trip" />
-          <Button
-            variant="outlined"
-            size="large"
-            onClick={() => {
-              activateTrip(lastTrip);
-              window.scrollTo({ top: 130, left: 0, behavior: "smooth" });
-            }}
-          >
-            {" "}
-            Last Added Trip
-          </Button>
-          <Button
-            variant="outlined"
-            size="large"
-            onClick={() => activateTrip({})}
-          >
-            {" "}
-            View All Trips
-          </Button>
+          {activeTrip.id ? (
+            <Button
+              variant="outlined"
+              size="large"
+              onClick={() => {
+                activateTrip(lastTrip);
+                window.scrollTo({ top: 130, left: 0, behavior: "smooth" });
+              }}
+            >
+              {" "}
+              Last Added Trip
+            </Button>
+          ) : (
+            ""
+          )}
+          {tripData.length > 0 ? (
+            <Button
+              variant="outlined"
+              size="large"
+              onClick={() => activateTrip({})}
+            >
+              {" "}
+              View All Trips
+            </Button>
+          ) : (
+            ""
+          )}
         </Stack>
       </Box>
       <Container sx={{ py: 3 }} maxWidth="md">
         <TripDetails data={activeTrip} />
-        <Typography variant="h4">Recently Added</Typography>
+        <Typography variant="h4">{tripsHeading}</Typography>
         <br />
-        {/* Cards siplaying all trips */}
         <Grid container spacing={4}>
           {tripData.map((trip: any, index: any) => (
             <Grid item key={index} xs={12} sm={6} md={4}>
@@ -125,15 +135,19 @@ export const DataDisplay = () => {
                   >
                     View Details
                   </Button>
-                  {myAuth === 'true' && (
+                  {myAuth === "true" ? (
                     <UpdateTrip id={trip.id} name={trip.destcity} data={trip} />
+                  ) : (
+                    ""
                   )}
-                  {myAuth === 'true' && (
+                  {myAuth === "true" ? (
                     <DeleteDialog
                       size="small"
                       id={trip.id}
                       name={trip.destcity}
                     />
+                  ) : (
+                    ""
                   )}
                 </CardActions>
               </Card>

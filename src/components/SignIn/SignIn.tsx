@@ -37,7 +37,6 @@ const signinStyles = {
     display: "block",
   },
   typographyStyle: {
-
     fontSize: "2em",
   },
   containerStyle: {
@@ -54,7 +53,7 @@ const NavA = styled(Link)({
   color: "#065579",
   marginBottom: "20px",
   marginTop: "10px",
-  textDecoration: "none"
+  textDecoration: "none",
 });
 
 // Functional components to be used inside of SignIn Component
@@ -77,7 +76,6 @@ export const GoogleButton = (props: buttonProps) => {
   const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
   onAuthStateChanged(auth, (user) => {
     if (user) {
-      console.log(user.email);
       localStorage.setItem("token", user.uid);
     }
   });
@@ -86,10 +84,9 @@ export const GoogleButton = (props: buttonProps) => {
 
   const signIn = async () => {
     await signInWithGoogle();
-    localStorage.setItem("myAuth", "true");
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log(user.email);
+        localStorage.setItem("myAuth", "true");
         localStorage.setItem("token", user.uid);
       }
     });
@@ -117,7 +114,7 @@ export const GoogleButton = (props: buttonProps) => {
   } else {
     return (
       <Button variant="contained" color="secondary" onClick={signIn}>
-        <GoogleIcon></GoogleIcon>{" "}Sign in with Google
+        <GoogleIcon></GoogleIcon> Sign in with Google
       </Button>
     );
   }
@@ -169,19 +166,19 @@ export const SignIn = (props: userProps) => {
       <Container maxWidth="sm" sx={signinStyles.containerStyle}>
         <Typography sx={signinStyles.typographyStyle}>Sign In Below</Typography>
         <form onSubmit={handleSubmit(onSubmit)}>
-            <Input
-              {...register("email")}
-              label="email"
-              name="email"
-              type="text"
-            />
-            <Input
-              {...register("password")}
-              label="password"
-              name="password"
-              placeholder="place password here"
-              type="password"
-            />
+          <Input
+            {...register("email")}
+            label="email"
+            name="email"
+            type="text"
+          />
+          <Input
+            {...register("password")}
+            label="password"
+            name="password"
+            placeholder="place password here"
+            type="password"
+          />
           <Box mt={2}>
             <Stack
               direction="row"
@@ -189,13 +186,15 @@ export const SignIn = (props: userProps) => {
               alignItems="center"
               spacing={2}
             >
-              <Button type="submit" variant="contained" color="primary" size="large">
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                size="large"
+              >
                 Submit
               </Button>
-              <GoogleButton
-                open={open}
-                onClick={handleSnackClose}
-              />
+              <GoogleButton open={open} onClick={handleSnackClose} />
             </Stack>
             <NavA to="/signup">Don't have an account? Register now!</NavA>
           </Box>
@@ -230,7 +229,6 @@ export const SignUp = (props: userProps) => {
     console.log(data.email, data.password);
     createUserWithEmailAndPassword(auth, data.email, data.password)
       .then((userCredential) => {
-
         const user = userCredential.user;
         //Once signed in we navigate to dashboard
         navigate("/signIn");
@@ -250,22 +248,24 @@ export const SignUp = (props: userProps) => {
           Sign Up To Start Using TripUp
         </Typography>
         <form onSubmit={handleSubmit(onSubmit)}>
-            <Input
-              {...register("email")}
-              label="email"
-              name="email"
-              placeholder="email"
-              type="text"
-            />
-        
-            <Input
-              {...register("password")}
-              label="password"
-              name="password"
-              placeholder="password"
-              type="password"
-            />
-            <Typography variant = "caption">Password must be 6 characters </Typography>
+          <Input
+            {...register("email")}
+            label="email"
+            name="email"
+            placeholder="email"
+            type="text"
+          />
+
+          <Input
+            {...register("password")}
+            label="password"
+            name="password"
+            placeholder="password"
+            type="password"
+          />
+          <Typography variant="caption">
+            Password must be 6 characters{" "}
+          </Typography>
           <Box mt={2}>
             <Stack
               direction="row"
